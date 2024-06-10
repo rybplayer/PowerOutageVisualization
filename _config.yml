@@ -1,0 +1,3 @@
+remote_theme: pages-themes/minima@2.5.1
+plugins:
+  - jekyll-remote-theme
