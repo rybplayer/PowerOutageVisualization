@@ -9,7 +9,7 @@ Author: Ryan Batubara
 
 According to the United States [National Oceanic and Atmospheric Administration (NOAA)](https://coast.noaa.gov/states/fast-facts/economics-and-demographics.html), almost 40% of the U.S. population live on the coast, despite these areas being less than 10% of the U.S. land mass (excluding Alaska). As such, the reliability of power outages in such areas impact the stability of many people. That said, the coast is not without drawbacks, being prone to disasters such as hurricanes and floods that do not impact inland territories as much, as detailed by the NOAA [here](https://oceanservice.noaa.gov/facts/coastalthreat.html). Of course, this presents new challenges to the power infastructure in such areas.
 
-Thus, the goal for this project is to explore the relationship of a state being coastal — which we define as having a coastline — or inland — which we define as having no coastline — on the power outages it experiences?
+Thus, the goal for this project is to explore the relationship of a state being coastal — which we define as having a coastline — or inland — which we define as having no coastline — on the power outages it experiences.
 
 To do so we will explore a dataset of major power outages in the U.S. from January 2000 to July 2016 comprising of 1354 rows and 56 data columns. This data was collected by Purdue's Laboratory for Advancing Sustainable Critical Infastructure [here](https://engineering.purdue.edu/LASCI/research-data/outages), and whose complete data description can be found [here](https://www.sciencedirect.com/science/article/pii/S2352340918307182). 
 
@@ -17,7 +17,7 @@ This will serve as our backbone for answering the question **"Does being a costa
 
 Due to the large size of the dataset, and the specificity of our data science question, we will only be using a few columns for our analysis, which we break down into the following categories:
 
-#### Geographic Data
+### Geographic Data
 
 | Column           | Description                                                                               |
 |------------------|-------------------------------------------------------------------------------------------|
@@ -28,7 +28,7 @@ Due to the large size of the dataset, and the specificity of our data science qu
 | CLIMATE.CATEGORY | Climate episode (Warm, Normal, Cold) of the region in that year when the outage occurred   |
 | TOTAL.CUSTOMERS  | Total number of customers in that U.S. state                                               |
 
-#### Outage Information
+### Outage Data
 
 | Column           | Description                            |
 | --------------   | -------------------------------------- |
@@ -68,7 +68,7 @@ The first few rows of the cleaned DataFrame are shown below:
 
 Now that the data is cleaned up, let's explore some of the columns visually.
 
-#### Univariate Analysis
+### Univariate Analysis
 
 Recall from the introduction that we wanted to answer the question "Does being a costal state impact the frequency and severity of power outages compared to inland states?" This means we want to explore how columns related to differences of coastal and inland states impact power outages. Therefore, some natural univariate visualizations we can do are
 1. A heatmap of the number of outages by U.S. State. We claim that the difference between coastal versus inland states is worth exploring; does this difference impact the number of recorded outages as well? If so, then it is worth exploring why these differenes occur.
@@ -92,7 +92,7 @@ It appears that a staggeringly large number of recorded major outages occur in C
 
 It appears that weather and international attacks cause a very large number of major power outages in the U.S during this time period. This means that weather differences between coastal and inland states may play a significant role in differentiating between outages of these states, though once again we will need more testing to see whether each weather causes differ from coastal and inland states.
 
-#### Bivariate Analysis
+### Bivariate Analysis
 
 By combining multiple columns of data, we can better model and visualize precisely how coastal or non coastal impacts power outages. We do three bivariate analyses:
 
@@ -135,7 +135,7 @@ Second, notice how coastal states vary more, and are generally more populous and
 
 Third, notice how there is a roughly linear relationship between the number of outages and a state's population. This is an important discovery, because it may be the case that (if we are able to find statistically significant evidence for this through hypothesis testing) coastal states experience more outages than inland states, this may primarily be due to the larger average population of coastal states (particularly due to California and Texas).
 
-#### Aggregate Analysis
+### Aggregate Analysis
 
 | STATE.COASTAL   |   equipment failure |   fuel supply emergency |   intentional attack |   islanding |   public appeal |   severe weather |   system operability disruption |
 |:----------------|--------------------:|------------------------:|---------------------:|------------:|----------------:|-----------------:|--------------------------------:|
@@ -161,8 +161,6 @@ We remark that one may also argue that these columns are MAR, but the location o
 ### Missingness Dependency
 
 Let's explore the missingness of `DEMAND.LOSS.MW` a bit more through hypothesis testing. We will run a permutation test on the missingness of `DEMAND.LOSS.MW` compared to `CAUSE.CATEGORY`, which we claim its missingness is dependant on, and another compared to `OUTAGE.START`, which we claim has less of a correlation.
-
-#### `DEMAND.LOSS.MW` Missingness on `CAUSE.CATEGORY`
 
 **Null Hypothesis:** The distribution of `CAUSE.CATEGORY` is the same when `DEMAND.LOSS.MW` is missing and not missing.
 
